@@ -1,0 +1,29 @@
+name: "Docker Context"
+description: "Set up a Remote Docker Context over SSH using Password or Keyfile Authentication"
+
+inputs:
+  host:
+    description: "Docker Host"
+    required: true
+  user:
+    description: "Docker User"
+    required: true
+  port:
+    description: "Docker Port"
+    required: true
+    default: "22"
+  pass:
+    description: "SSH Password"
+  ssh_key:
+    description: "SSH Key File"
+  registry_user:
+    description: "Registry Auth Username"
+  registry_pass:
+    description: "Registry Auth Password"
+  registry_host:
+    description: "Registry Auth Hostname"
+
+runs:
+  using: "node24"
+  main: "dist/index.js"
+  post: "dist/index.js"

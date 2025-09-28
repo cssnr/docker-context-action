@@ -1,0 +1,39 @@
+name: "⚠️ Report an Issue"
+description: "Please let us know if something is not working right..."
+labels: ["bug"]
+assignees:
+  - smashedr
+
+body:
+  - type: input
+    id: website
+    validations:
+      required: false
+    attributes:
+      label: URL
+      description: Please provide a link to the repository or workflow in question if possible.
+
+  - type: textarea
+    id: description
+    validations:
+      required: true
+    attributes:
+      label: Issue Description
+      description: Please describe the issue you are experiencing and how it can be reproduced.
+      placeholder: Provide as many details as possible...
+
+  - type: textarea
+    id: logs
+    validations:
+      required: false
+    attributes:
+      label: Log Output
+      description: Paste any relevant logs or output in this box.
+      placeholder: This text is automatically wrapped in a code block.
+      render: shell
+
+  - type: markdown
+    attributes:
+      value: |
+        Any issues or bugs that can be verified will be fixed!
+        Thank you very much for taking the time to make this report...

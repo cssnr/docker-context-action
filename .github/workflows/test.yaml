@@ -1,0 +1,66 @@
+name: "Test"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "18 18 * * 1,3,5"
+  push:
+    branches: ["**"]
+    paths:
+      - "dist/**"
+      - "src/**"
+      - ".github/workflows/test.yaml"
+      - "Dockerfile"
+      - "package*.json"
+      - "requirements*.txt"
+      - "action.yaml"
+
+jobs:
+  test:
+    name: "Test"
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v5
+
+      - name: "Debug event.json"
+        if: ${{ !github.event.act }}
+        continue-on-error: true
+        run: |
+          cat "${GITHUB_EVENT_PATH}"
+
+      - name: "1: Step Before"
+        continue-on-error: true
+        run: |
+          docker context ls
+
+      - name: "1: Docker Context"
+        if: ${{ !cancelled() }}
+        uses: ./
+        with:
+          host: ${{ secrets.DOCKER_HOST }}
+          #port: ${{ secrets.DOCKER_PORT }}
+          user: ${{ secrets.DOCKER_USER }}
+          #pass: ${{ secrets.DOCKER_PASS }}
+          ssh_key: ${{ secrets.DOCKER_SSH_KEY }}
+
+      - name: "1: Step After"
+        run: |
+          docker context ls
+          #docker context inspect
+          #docker ps -f name=test_stack-context
+          #docker info
+
+      - name: "1: Write YAML"
+        if: ${{ !cancelled() }}
+        uses: teunmooij/yaml@v1
+        with:
+          to-file: "docker-compose.yaml"
+          data: |
+            {"version":"3.8","services":{"alpine":{"image":"alpine:latest","command":"tail -f /dev/null"}}}
+
+      - name: "1: Deploy Stack"
+        run: |
+          docker stack deploy -c docker-compose.yaml --detach=false test_stack-context
