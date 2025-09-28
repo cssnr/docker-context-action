@@ -6,7 +6,8 @@ const exec = require('@actions/exec')
         const stage = core.getState('STAGE') || 'main'
 
         if (stage === 'main') {
-            core.info('🏳️ Starting - Test Exec Action')
+            core.info('🏳️ Starting - Docker Context Action')
+            core.saveState('STAGE', 'cleanup')
 
             if (core.getInput('pass') || core.getInput('ssh_key')) {
                 console.log('▶️ Running step: src/ssh.sh')
@@ -27,8 +28,6 @@ const exec = require('@actions/exec')
             } else {
                 core.info('No registry_user/registry_pass. Skipping Docker Login...')
             }
-
-            core.saveState('STAGE', 'cleanup')
         } else if (stage === 'cleanup') {
             if (core.getState('SSH_CLEANUP')) {
                 console.log('▶️ Running step: src/cleanup.sh')
