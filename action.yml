@@ -1,5 +1,9 @@
 name: "Docker Context"
 description: "Set up a Remote Docker Context over SSH using Password or Keyfile Authentication"
+author: "Shane"
+branding:
+  icon: "sliders"
+  color: "blue"
 
 inputs:
   host:
