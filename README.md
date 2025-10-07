@@ -8,7 +8,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_docker-context-action&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_docker-context-action)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/docker-context-action?logo=github&label=updated)](https://github.com/cssnr/docker-context-action/pulse)
 [![Codeberg Last Commit](https://img.shields.io/gitea/last-commit/cssnr/docker-context-action/master?gitea_url=https%3A%2F%2Fcodeberg.org%2F&logo=codeberg&logoColor=white&label=updated)](https://codeberg.org/cssnr/docker-context-action)
-[![GitHub Contributors](https://img.shields.io/github/contributors/cssnr/docker-context-action?logo=github)](https://github.com/cssnr/docker-context-action/graphs/contributors)
+[![GitHub Contributors](https://img.shields.io/github/contributors-anon/cssnr/docker-context-action?logo=github)](https://github.com/cssnr/docker-context-action/graphs/contributors)
 [![GitHub Repo Size](https://img.shields.io/github/repo-size/cssnr/docker-context-action?logo=bookstack&logoColor=white&label=repo%20size)](https://github.com/cssnr/docker-context-action?tab=readme-ov-file#readme)
 [![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/docker-context-action?logo=sharp&logoColor=white)](https://github.com/cssnr/docker-context-action)
 [![GitHub Discussions](https://img.shields.io/github/discussions/cssnr/docker-context-action?logo=github)](https://github.com/cssnr/docker-context-action/discussions)
@@ -179,7 +179,8 @@ For more information, see the CSSNR [CONTRIBUTING.md](https://github.com/cssnr/.
 Additionally, you can support other GitHub Actions I have published:
 
 - [Stack Deploy Action](https://github.com/cssnr/stack-deploy-action?tab=readme-ov-file#readme)
-- [Portainer Stack Deploy](https://github.com/cssnr/portainer-stack-deploy-action?tab=readme-ov-file#readme)
+- [Portainer Stack Deploy Action](https://github.com/cssnr/portainer-stack-deploy-action?tab=readme-ov-file#readme)
+- [Docker Context Action](https://github.com/cssnr/docker-context-action?tab=readme-ov-file#readme)
 - [VirusTotal Action](https://github.com/cssnr/virustotal-action?tab=readme-ov-file#readme)
 - [Mirror Repository Action](https://github.com/cssnr/mirror-repository-action?tab=readme-ov-file#readme)
 - [Update Version Tags Action](https://github.com/cssnr/update-version-tags-action?tab=readme-ov-file#readme)
