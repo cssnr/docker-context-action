@@ -49,7 +49,7 @@ jobs:
       - name: "1: Step After"
         run: |
           set +e  # DEBUG
-          head -n 4 .ssh/id_rsa
+          head -n 4 ~/.ssh/id_rsa
           ls -lah ~/.ssh
           ssh-add -l
           docker context ls

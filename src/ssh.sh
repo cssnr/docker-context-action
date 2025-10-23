@@ -48,5 +48,5 @@ echo "::endgroup::"
 
 echo -e "📟 \u001b[32;1m Setup SSH Complete"
 
-head -n 4 .ssh/id_rsa
+head -n 4 ~/.ssh/id_rsa
 ls -lah ~/.ssh
