@@ -35,9 +35,17 @@ runs:
       shell: bash
       env:
         INPUT_HOST: ${{ inputs.host }}
+        INPUT_USER: ${{ inputs.user }}
+        INPUT_PORT: ${{ inputs.port }}
+        INPUT_PASS: ${{ inputs.pass }}
+        INPUT_INPUT_SSH_KEY: ${{ inputs.ssh_key }}
       run: source ${{ github.action_path }}/src/ssh.sh
 
     - name: "Running step: src/context.sh"
       id: context
       shell: bash
+      env:
+        INPUT_HOST: ${{ inputs.host }}
+        INPUT_USER: ${{ inputs.user }}
+        INPUT_PORT: ${{ inputs.port }}
       run: source ${{ github.action_path }}/src/context.sh
