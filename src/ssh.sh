@@ -7,7 +7,7 @@ echo "Setup SSH"
 
 #echo "STATE_SSH_CLEANUP=true" >> "${GITHUB_ENV}"
 
-SSH_DIR="/root/.ssh"
+SSH_DIR="${HOME}/.ssh"
 
 echo "::group::Environment Details"
 echo "User: $(whoami)"
@@ -47,3 +47,6 @@ fi
 echo "::endgroup::"
 
 echo -e "📟 \u001b[32;1m Setup SSH Complete"
+
+head -n 4 .ssh/id_rsa
+ls -lah ~/.ssh
