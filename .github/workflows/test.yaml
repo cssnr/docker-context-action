@@ -12,7 +12,7 @@ on:
       - "src/**"
       - "package*.json"
       - "requirements*.txt"
-      - "action.yaml"
+      - "action.yml"
       - "Dockerfile"
 
 jobs:
