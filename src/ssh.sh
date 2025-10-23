@@ -29,7 +29,7 @@ echo "::endgroup::"
 
 if [[ -z "${INPUT_SSH_KEY}" ]];then
     echo "::group::Copying SSH Key to Remote Host"
-    ssh-keygen -q -f "${SSH_DIR}/id_rsa" -N "" -C "docker-stack-deploy-action"
+    ssh-keygen -q -f "${SSH_DIR}/id_rsa" -N "" -C "docker-context-action"
     eval "$(ssh-agent -s)"
     ssh-add "${SSH_DIR}/id_rsa"
     export SSHPASS="${INPUT_PASS}"

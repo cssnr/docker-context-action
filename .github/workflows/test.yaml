@@ -71,4 +71,4 @@ jobs:
       - name: "1: After Deploy"
         run: |
           docker ps -f "name=${{ env.stack-name }}"
-          docker stack rm "${{ env.stack-name }}"
+          #docker stack rm "${{ env.stack-name }}"

@@ -11,6 +11,6 @@ echo "Cleanup SSH"
 echo "Cleaning Up authorized_keys File"
 
 ssh -o StrictHostKeyChecking=no -o BatchMode=yes -o ConnectTimeout=30 -p "${INPUT_PORT}" "${INPUT_USER}@${INPUT_HOST}" \
-    "sed -i '/docker-stack-deploy-action/d' ~/.ssh/authorized_keys"
+    "sed -i '/docker-context-action/d' ~/.ssh/authorized_keys"
 
 echo -e "🧹 \u001b[32;1m Cleanup SSH Complete"
