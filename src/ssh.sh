@@ -7,7 +7,7 @@ echo "Setup SSH"
 
 #echo "STATE_SSH_CLEANUP=true" >> "${GITHUB_ENV}"
 
-SSH_DIR="${HOME}/.ssh"
+SSH_DIR="/root/.ssh"
 
 echo "::group::Environment Details"
 echo "User: $(whoami)"

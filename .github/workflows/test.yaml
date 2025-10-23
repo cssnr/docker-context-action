@@ -54,6 +54,7 @@ jobs:
           #docker context inspect
           #docker ps -f name=test_stack-context
           #docker info
+          exit 1
 
       - name: "1: Write YAML"
         if: ${{ !cancelled() }}
