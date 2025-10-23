@@ -17,6 +17,10 @@ echo "SSH Directory: ${SSH_DIR}"
 echo "Current Directory: $(pwd)"
 echo "::endgroup::"
 
+echo "INPUT_USER: ${INPUT_USER}"
+echo "INPUT_HOST: ${INPUT_HOST}"
+echo "INPUT_PORT: ${INPUT_PORT}"
+
 echo "::group::Running: ssh-keyscan"
 mkdir -p "${SSH_DIR}" ~/.ssh
 chmod 0700 "${SSH_DIR}" ~/.ssh
