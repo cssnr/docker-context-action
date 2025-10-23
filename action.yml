@@ -28,6 +28,14 @@ inputs:
     description: "Registry Auth Hostname"
 
 runs:
-  using: "node24"
-  main: "dist/index.js"
-  post: "dist/index.js"
+  using: "composite"
+  steps:
+    - name: "Running step: src/ssh.sh"
+      id: ssh
+      shell: bash
+      run: source ${{ github.action_path }}/src/ssh.sh
+
+    - name: "Running step: src/context.sh"
+      id: context
+      shell: bash
+      run: source ${{ github.action_path }}/src/context.sh

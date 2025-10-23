@@ -43,11 +43,13 @@ jobs:
           host: ${{ secrets.DOCKER_HOST }}
           #port: ${{ secrets.DOCKER_PORT }}
           user: ${{ secrets.DOCKER_USER }}
-          pass: ${{ secrets.DOCKER_PASS }}
-          #ssh_key: ${{ secrets.DOCKER_SSH_KEY }}
+          #pass: ${{ secrets.DOCKER_PASS }}
+          ssh_key: ${{ secrets.DOCKER_SSH_KEY }}
 
       - name: "1: Step After"
         run: |
+          set +e  # DEBUG
+          ssh-add -l
           docker context ls
           #docker context inspect
           #docker ps -f name=test_stack-context
