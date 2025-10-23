@@ -31,7 +31,7 @@ jobs:
         run: |
           cat "${GITHUB_EVENT_PATH}"
 
-      - name: "1: Step Before"
+      - name: "1: Before Context"
         continue-on-error: true
         run: |
           docker context ls
@@ -46,18 +46,12 @@ jobs:
           #pass: ${{ secrets.DOCKER_PASS }}
           ssh_key: ${{ secrets.DOCKER_SSH_KEY }}
 
-      - name: "1: Step After"
+      - name: "1: After Context"
         run: |
-          #set +e  # DEBUG
-          #head -n 4 ~/.ssh/id_rsa
-          #ls -lah ~/.ssh
-          #eval `ssh-agent -s`
-          #ssh-add -l
           docker context ls
           #docker context inspect
-          #docker ps -f name=test_stack-context
           #docker info
-          #exit 1
+          docker ps -f name=test_stack-context
 
       - name: "1: Write YAML"
         if: ${{ !cancelled() }}
@@ -70,3 +64,7 @@ jobs:
       - name: "1: Deploy Stack"
         run: |
           docker stack deploy -c docker-compose.yaml --detach=false test_stack-context
+
+      - name: "1: After Deploy"
+        run: |
+          docker ps -f name=test_stack-context
