@@ -31318,14 +31318,14 @@ function requireSrc () {
 	        const stage = core.getState('STAGE') || 'main';
 
 	        // Debug
-	        core.startGroup('Debug: github.context');
-	        console.log(github.context);
-	        core.endGroup(); // Debug github.context
+	        // core.startGroup('Debug: github.context')
+	        // console.log(github.context)
+	        // core.endGroup() // Debug github.context
 	        core.startGroup('Debug: process.env');
-	        // console.log(process.env)
+	        console.log(process.env);
 	        core.endGroup(); // Debug process.env
 
-	        console.log('github.event:', github.event);
+	        console.log('GITHUB_WORKFLOW_REF:', process.env.GITHUB_WORKFLOW_REF);
 
 	        const bin = `${process.env.RUNNER_TEMP}/docker-context-action`;
 
