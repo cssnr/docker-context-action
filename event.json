@@ -1,3 +1,5 @@
 {
-  "act": true
+  "act": true,
+  "workflow_sha": "06ac3e56e828129c17054b39d11317584af1bd88",
+  "workflow_ref": "smashedr/js-test-action/.github/workflows/test.yaml@refs/heads/master"
 }

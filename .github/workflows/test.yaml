@@ -12,8 +12,11 @@ on:
       - "src/**"
       - "package*.json"
       - "requirements*.txt"
-      - "action.yaml"
+      - "action.yml"
       - "Dockerfile"
+
+env:
+  stack-name: "test_stack-context"
 
 jobs:
   test:
@@ -25,13 +28,14 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v5
 
-      - name: "Debug event.json"
+      - name: "Debug CTX github"
         if: ${{ !github.event.act }}
         continue-on-error: true
-        run: |
-          cat "${GITHUB_EVENT_PATH}"
+        env:
+          GITHUB_CTX: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CTX"
 
-      - name: "1: Step Before"
+      - name: "1: Before Context"
         continue-on-error: true
         run: |
           docker context ls
@@ -43,15 +47,15 @@ jobs:
           host: ${{ secrets.DOCKER_HOST }}
           #port: ${{ secrets.DOCKER_PORT }}
           user: ${{ secrets.DOCKER_USER }}
-          pass: ${{ secrets.DOCKER_PASS }}
-          #ssh_key: ${{ secrets.DOCKER_SSH_KEY }}
+          #pass: ${{ secrets.DOCKER_PASS }}
+          ssh_key: ${{ secrets.DOCKER_SSH_KEY }}
 
-      - name: "1: Step After"
+      - name: "1: After Context"
         run: |
           docker context ls
           #docker context inspect
-          #docker ps -f name=test_stack-context
           #docker info
+          docker ps -f "name=${{ env.stack-name }}"
 
       - name: "1: Write YAML"
         if: ${{ !cancelled() }}
@@ -63,4 +67,9 @@ jobs:
 
       - name: "1: Deploy Stack"
         run: |
-          docker stack deploy -c docker-compose.yaml --detach=false test_stack-context
+          docker stack deploy -c docker-compose.yaml --detach=false "${{ env.stack-name }}"
+
+      - name: "1: After Deploy"
+        run: |
+          docker ps -f "name=${{ env.stack-name }}"
+          #docker stack rm "${{ env.stack-name }}"

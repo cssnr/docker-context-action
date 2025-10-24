@@ -65,16 +65,17 @@ Don't see your feature here? Please help by submitting a [Feature Request](https
 
 ## Inputs
 
-| Input&nbsp;Name                              |                Required                 | Default&nbsp;Value | Description&nbsp;of&nbsp;Input |
-| :------------------------------------------- | :-------------------------------------: | :----------------: | :----------------------------- |
-| [host](#host)                                |                 **Yes**                 |         -          | SSH Hostname or IP             |
-| `user`                                       |                 **Yes**                 |         -          | SSH Username                   |
-| `port`                                       |                    -                    |        `22`        | SSH Port                       |
-| [pass](#passssh_key)                         |         [for ssh](#passssh_key)         |         -          | SSH Password                   |
-| [ssh_key](#passssh_key)                      |         [for ssh](#passssh_key)         |         -          | SSH Key File                   |
-| [registry_user](#registry_userregistry_pass) | [optional](#registry_userregistry_pass) |         -          | Registry Username              |
-| [registry_pass](#registry_userregistry_pass) | [optional](#registry_userregistry_pass) |         -          | Registry Password              |
-| [registry_host](#registry_host)              |                    -                    |    `docker.io`     | Registry Host                  |
+| Input&nbsp;Name                              |                Required                 |      Default&nbsp;Value      | Description&nbsp;of&nbsp;Input |
+| :------------------------------------------- | :-------------------------------------: | :--------------------------: | :----------------------------- |
+| [host](#host)                                |                 **Yes**                 |              -               | SSH Hostname or IP             |
+| `user`                                       |                 **Yes**                 |              -               | SSH Username                   |
+| `port`                                       |                    -                    |             `22`             | SSH Port                       |
+| [pass](#passssh_key)                         |         [for ssh](#passssh_key)         |              -               | SSH Password                   |
+| [ssh_key](#passssh_key)                      |         [for ssh](#passssh_key)         |              -               | SSH Key File                   |
+| [registry_user](#registry_userregistry_pass) | [optional](#registry_userregistry_pass) |              -               | Registry Username              |
+| [registry_pass](#registry_userregistry_pass) | [optional](#registry_userregistry_pass) |              -               | Registry Password              |
+| [registry_host](#registry_host)              |                    -                    |         `docker.io`          | Registry Host                  |
+| token                                        |             `github.token`              | GitHub Access Token PAT [^1] |
 
 With all inputs (not all required).
 
@@ -229,3 +230,7 @@ Note: The `docker-test-action` builds, runs and pushes images to [GitHub Contain
 </details>
 
 For a full list of current projects to support visit: [https://cssnr.github.io/](https://cssnr.github.io/)
+
+[^1]:
+    The `${{ github.token }}` / `{{ secrets.GITHUB_TOKEN }}` is automatically passed, there is no need to manually pass these!
+    This is only available to allow users to pass a different token they have created and defined in their `secrets`.
