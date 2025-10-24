@@ -31309,7 +31309,6 @@ function requireSrc () {
 	const fs = __require$3();
 	const core = requireCore();
 	const exec = requireExec();
-	requireGithub();
 
 	const Api = requireApi()
 
