@@ -17,9 +17,6 @@ const Api = require('./api')
         console.log(process.env)
         core.endGroup() // Debug process.env
 
-        console.log('workflowRef:', github.context.workflowRef)
-        console.log('workflowRef:', github.context.workflow_ref)
-
         const bin = `${process.env.RUNNER_TEMP}/docker-context-action`
 
         if (stage === 'main') {
@@ -72,7 +69,8 @@ const Api = require('./api')
  */
 async function downloadScript(bin) {
     const token = core.getInput('token', { required: true })
-    const workflowRef = github.context.workflowRef || github.context.payload.workflowRef
+    // const workflowRef = github.context.workflowRef || github.context.payload.workflowRef
+    const workflowRef = process.env.GITHUB_WORKFLOW_REF
     console.log('workflowRef:', workflowRef)
     const ref = workflowRef.split('@')[1]
     console.log('ref:', ref)
