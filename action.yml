@@ -14,7 +14,6 @@ inputs:
     required: true
   port:
     description: "Docker Port"
-    required: true
     default: "22"
   pass:
     description: "SSH Password"
@@ -26,6 +25,9 @@ inputs:
     description: "Registry Auth Password"
   registry_host:
     description: "Registry Auth Hostname"
+  token:
+    description: "GitHub Access Token PAT"
+    default: ${{ github.token }}
 
 runs:
   using: "node24"
