@@ -65,17 +65,17 @@ Don't see your feature here? Please help by submitting a [Feature Request](https
 
 ## Inputs
 
-| Input&nbsp;Name                              |                Required                 |      Default&nbsp;Value      | Description&nbsp;of&nbsp;Input |
-| :------------------------------------------- | :-------------------------------------: | :--------------------------: | :----------------------------- |
-| [host](#host)                                |                 **Yes**                 |              -               | SSH Hostname or IP             |
-| `user`                                       |                 **Yes**                 |              -               | SSH Username                   |
-| `port`                                       |                    -                    |             `22`             | SSH Port                       |
-| [pass](#passssh_key)                         |         [for ssh](#passssh_key)         |              -               | SSH Password                   |
-| [ssh_key](#passssh_key)                      |         [for ssh](#passssh_key)         |              -               | SSH Key File                   |
-| [registry_user](#registry_userregistry_pass) | [optional](#registry_userregistry_pass) |              -               | Registry Username              |
-| [registry_pass](#registry_userregistry_pass) | [optional](#registry_userregistry_pass) |              -               | Registry Password              |
-| [registry_host](#registry_host)              |                    -                    |         `docker.io`          | Registry Host                  |
-| token                                        |             `github.token`              | GitHub Access Token PAT [^1] |
+| Input&nbsp;Name                              |     Default&nbsp;Value     | Description&nbsp;of&nbsp;Input |
+| :------------------------------------------- | :------------------------: | :----------------------------- |
+| [host](#host)                                |         _Required_         | SSH Hostname or IP             |
+| `user`                                       |         _Required_         | SSH Username                   |
+| `port`                                       |            `22`            | SSH Port                       |
+| [pass](#passssh_key)                         | [or ssh_key](#passssh_key) | SSH Password                   |
+| [ssh_key](#passssh_key)                      |  [or pass](#passssh_key)   | SSH Key File                   |
+| [registry_user](#registry_userregistry_pass) |             -              | Registry Username              |
+| [registry_pass](#registry_userregistry_pass) |             -              | Registry Password              |
+| [registry_host](#registry_host)              |        `docker.io`         | Registry Host                  |
+| token                                        |       `github.token`       | GitHub Access Token PAT [^1]   |
 
 With all inputs (not all required).
 
