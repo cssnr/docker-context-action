@@ -31322,11 +31322,10 @@ function requireSrc () {
 	        console.log(github.context);
 	        core.endGroup(); // Debug github.context
 	        core.startGroup('Debug: process.env');
-	        console.log(process.env);
+	        // console.log(process.env)
 	        core.endGroup(); // Debug process.env
 
-	        console.log('workflowRef:', github.context.workflowRef);
-	        console.log('workflowRef:', github.context.workflow_ref);
+	        console.log('github.event:', github.event);
 
 	        const bin = `${process.env.RUNNER_TEMP}/docker-context-action`;
 
