@@ -21,6 +21,7 @@ env:
 jobs:
   test:
     name: "Test"
+    if: ${{ !contains(github.event.head_commit.message, '#notest') }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
 
@@ -28,12 +29,12 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v5
 
-      #      - name: "Debug CTX github"
-      #        if: ${{ !github.event.act }}
-      #        continue-on-error: true
-      #        env:
-      #          GITHUB_CTX: ${{ toJSON(github) }}
-      #        run: echo "$GITHUB_CTX"
+      - name: "Debug CTX github"
+        if: ${{ !github.event.act }}
+        continue-on-error: true
+        env:
+          GITHUB_CTX: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CTX"
 
       - name: "1: Before Context"
         continue-on-error: true
