@@ -33,7 +33,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "::group::ls"
-          ls -lAh
+          ls -lAh .
           echo "::endgroup::"
           echo "::group::tree"
           tree .
