@@ -65,4 +65,4 @@ jobs:
 
       - name: "Check Build Action"
         if: ${{ steps.changed.outputs.any_changed == 'true' }}
-        uses: cssnr/check-build-action@ci
+        uses: cssnr/check-build-action@v1
