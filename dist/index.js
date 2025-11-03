@@ -27287,9 +27287,14 @@ function requireSrc () {
 
 	        console.log('GITHUB_ACTION_REPOSITORY:', process.env.GITHUB_ACTION_REPOSITORY);
 	        console.log('GITHUB_ACTION_REF:', process.env.GITHUB_ACTION_REF);
-	        const actionPath = `/home/runner/work/_actions/${process.env.GITHUB_ACTION_REPOSITORY}/${process.env.GITHUB_ACTION_REF}`;
-	        core.info(`actionPath: ${actionPath}`);
-	        const bin = `${actionPath}/src`;
+	        console.log('GITHUB_WORKSPACE:', process.env.GITHUB_WORKSPACE);
+	        let bin = `${process.env.GITHUB_WORKSPACE}/src`;
+	        core.info(`bin: ${bin}`);
+	        if (process.env.GITHUB_ACTION_REPOSITORY && process.env.GITHUB_ACTION_REF) {
+	            const actionPath = `/home/runner/work/_actions/${process.env.GITHUB_ACTION_REPOSITORY}/${process.env.GITHUB_ACTION_REF}`;
+	            core.info(`actionPath: ${actionPath}`);
+	            bin = `${actionPath}/src`;
+	        }
 	        core.info(`bin: ${bin}`);
 	        await exec.exec('ls', ['-lah', bin], { ignoreReturnCode: true });
 
