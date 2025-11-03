@@ -50,7 +50,7 @@ jobs:
 
       - name: "1: Docker Context"
         if: ${{ !cancelled() }}
-        uses: cssnr/docker-context-action@${{ github.event.pull_request.head.sha }}
+        uses: ./
         with:
           host: ${{ secrets.DOCKER_HOST }}
           #port: ${{ secrets.DOCKER_PORT }}

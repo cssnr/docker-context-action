@@ -18,6 +18,8 @@ const exec = require('@actions/exec')
 
         // const bin = `${process.env.RUNNER_TEMP}/docker-context-action`
 
+        console.log('GITHUB_ACTION_REPOSITORY:', process.env.GITHUB_ACTION_REPOSITORY)
+        console.log('GITHUB_ACTION_REF:', process.env.GITHUB_ACTION_REF)
         const actionPath = `/home/runner/work/_actions/${process.env.GITHUB_ACTION_REPOSITORY}/${process.env.GITHUB_ACTION_REF}`
         core.info(`actionPath: ${actionPath}`)
         const bin = `${actionPath}/src`
