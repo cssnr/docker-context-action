@@ -1,8 +1,5 @@
-// const fs = require('node:fs')
 const core = require('@actions/core')
 const exec = require('@actions/exec')
-
-// const Api = require('./api')
 
 ;(async () => {
     try {
@@ -12,32 +9,25 @@ const exec = require('@actions/exec')
         // core.startGroup('Debug: github.context')
         // console.log(github.context)
         // core.endGroup() // Debug github.context
-        core.startGroup('Debug: process.env')
-        console.log(process.env)
-        core.endGroup() // Debug process.env
+        // core.startGroup('Debug: process.env')
+        // console.log(process.env)
+        // core.endGroup() // Debug process.env
 
-        // const bin = `${process.env.RUNNER_TEMP}/docker-context-action`
-
-        console.log('GITHUB_ACTION_REPOSITORY:', process.env.GITHUB_ACTION_REPOSITORY)
-        console.log('GITHUB_ACTION_REF:', process.env.GITHUB_ACTION_REF)
-        console.log('GITHUB_WORKSPACE:', process.env.GITHUB_WORKSPACE)
+        core.debug(`GITHUB_ACTION_REPOSITORY: ${process.env.GITHUB_ACTION_REPOSITORY}`)
+        core.debug(`GITHUB_ACTION_REF: ${process.env.GITHUB_ACTION_REF}`)
+        core.debug(`GITHUB_WORKSPACE: ${process.env.GITHUB_WORKSPACE}`)
         let bin = `${process.env.GITHUB_WORKSPACE}/src`
-        core.info(`bin: ${bin}`)
         if (process.env.GITHUB_ACTION_REPOSITORY && process.env.GITHUB_ACTION_REF) {
             const actionPath = `/home/runner/work/_actions/${process.env.GITHUB_ACTION_REPOSITORY}/${process.env.GITHUB_ACTION_REF}`
-            core.info(`actionPath: ${actionPath}`)
+            console.log(`actionPath: ${actionPath}`)
             bin = `${actionPath}/src`
         }
-        core.info(`bin: ${bin}`)
-        await exec.exec('ls', ['-lah', bin], { ignoreReturnCode: true })
+        console.log(`bin: ${bin}`)
+        // await exec.exec('ls', ['-lah', bin], { ignoreReturnCode: true })
 
         if (stage === 'main') {
             core.info('🏳️ Starting - Docker Context Action')
             core.saveState('STAGE', 'cleanup')
-
-            // core.startGroup(`Download Scripts: ${bin}`)
-            // await downloadScript(bin)
-            // core.endGroup() // Download Scripts
 
             if (core.getInput('pass') || core.getInput('ssh_key')) {
                 console.log(`▶️ Running step: ${bin}/ssh.sh`)
@@ -73,27 +63,3 @@ const exec = require('@actions/exec')
         core.setFailed(e.message)
     }
 })()
-
-// /**
-//  * Download bin Scripts
-//  * @param {String} bin
-//  * @return {Promise<void>}
-//  */
-// async function downloadScript(bin) {
-//     const token = core.getInput('token', { required: true })
-//     const workflowRef = process.env.GITHUB_WORKFLOW_REF
-//     console.log('workflowRef:', workflowRef)
-//     const ref = workflowRef.split('@')[1]
-//     console.log('ref:', ref)
-//     const repo = { owner: workflowRef.split('/')[0], repo: workflowRef.split('/')[1] }
-//     console.log('repo:', repo)
-//     const api = new Api(token, repo)
-//     fs.mkdirSync(bin)
-//     await api.getContent(ref, 'src/ssh.sh', `${bin}/ssh.sh`)
-//     await api.getContent(ref, 'src/context.sh', `${bin}/context.sh`)
-//     if (core.getInput('registry_user') && core.getInput('registry_pass')) {
-//         await api.getContent(ref, 'src/login.sh', `${bin}/login.sh`)
-//     }
-//     await api.getContent(ref, 'src/cleanup.sh', `${bin}/cleanup.sh`)
-//     await exec.getExecOutput(`ls -lah ${bin}`)
-// }

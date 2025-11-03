@@ -3,7 +3,7 @@
 var require$$0 = require('os');
 var require$$0$1 = require('crypto');
 var require$$1 = require('fs');
-var require$$1$4 = require('path');
+var require$$1$5 = require('path');
 var require$$2 = require('http');
 var require$$3 = require('https');
 var require$$0$4 = require('net');
@@ -15,20 +15,21 @@ var require$$0$5 = require('stream');
 var require$$7 = require('buffer');
 var require$$8 = require('querystring');
 var require$$14 = require('stream/web');
-var node_module = require('node:module');
-var require$$0$6 = require('worker_threads');
+var require$$0$7 = require('node:stream');
+var require$$1$2 = require('node:util');
+var require$$0$6 = require('node:events');
+var require$$0$8 = require('worker_threads');
 var require$$2$1 = require('perf_hooks');
 var require$$5 = require('util/types');
 var require$$4$1 = require('async_hooks');
-var require$$1$2 = require('console');
-var require$$1$3 = require('url');
+var require$$1$3 = require('console');
+var require$$1$4 = require('url');
 var require$$3$1 = require('zlib');
 var require$$6 = require('string_decoder');
-var require$$0$7 = require('diagnostics_channel');
+var require$$0$9 = require('diagnostics_channel');
 var require$$2$2 = require('child_process');
 var require$$6$1 = require('timers');
 
-var _documentCurrentScript = typeof document !== 'undefined' ? document.currentScript : null;
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 function getDefaultExportFromCjs (x) {
@@ -1727,15 +1728,6 @@ function requireTimers () {
 
 var main = {exports: {}};
 
-const require$3 = node_module.createRequire((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('index.js', document.baseURI).href)));
-function __require$2() { return require$3("node:stream"); }
-
-const require$2 = node_module.createRequire((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('index.js', document.baseURI).href)));
-function __require$1() { return require$2("node:util"); }
-
-const require$1 = node_module.createRequire((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('index.js', document.baseURI).href)));
-function __require() { return require$1("node:events"); }
-
 var sbmh;
 var hasRequiredSbmh;
 
@@ -1769,8 +1761,8 @@ function requireSbmh () {
 	 * Based heavily on the Streaming Boyer-Moore-Horspool C++ implementation
 	 * by Hongli Lai at: https://github.com/FooBarWidget/boyer-moore-horspool
 	 */
-	const EventEmitter = __require().EventEmitter;
-	const inherits = __require$1().inherits;
+	const EventEmitter = require$$0$6.EventEmitter;
+	const inherits = require$$1$2.inherits;
 
 	function SBMH (needle) {
 	  if (typeof needle === 'string') {
@@ -1979,8 +1971,8 @@ function requirePartStream () {
 	if (hasRequiredPartStream) return PartStream_1;
 	hasRequiredPartStream = 1;
 
-	const inherits = __require$1().inherits;
-	const ReadableStream = __require$2().Readable;
+	const inherits = require$$1$2.inherits;
+	const ReadableStream = require$$0$7.Readable;
 
 	function PartStream (opts) {
 	  ReadableStream.call(this, opts);
@@ -2024,8 +2016,8 @@ function requireHeaderParser () {
 	if (hasRequiredHeaderParser) return HeaderParser_1;
 	hasRequiredHeaderParser = 1;
 
-	const EventEmitter = __require().EventEmitter;
-	const inherits = __require$1().inherits;
+	const EventEmitter = require$$0$6.EventEmitter;
+	const inherits = require$$1$2.inherits;
 	const getLimit = requireGetLimit();
 
 	const StreamSearch = requireSbmh();
@@ -2132,8 +2124,8 @@ function requireDicer () {
 	if (hasRequiredDicer) return Dicer_1;
 	hasRequiredDicer = 1;
 
-	const WritableStream = __require$2().Writable;
-	const inherits = __require$1().inherits;
+	const WritableStream = require$$0$7.Writable;
+	const inherits = require$$1$2.inherits;
 
 	const StreamSearch = requireSbmh();
 
@@ -2709,8 +2701,8 @@ function requireMultipart () {
 	//  * support limits.fieldNameSize
 	//     -- this will require modifications to utils.parseParams
 
-	const { Readable } = __require$2();
-	const { inherits } = __require$1();
+	const { Readable } = require$$0$7;
+	const { inherits } = require$$1$2;
 
 	const Dicer = requireDicer();
 
@@ -3275,8 +3267,8 @@ function requireMain () {
 	if (hasRequiredMain) return main.exports;
 	hasRequiredMain = 1;
 
-	const WritableStream = __require$2().Writable;
-	const { inherits } = __require$1();
+	const WritableStream = require$$0$7.Writable;
+	const { inherits } = require$$1$2;
 	const Dicer = requireDicer();
 
 	const MultipartParser = requireMultipart();
@@ -3368,7 +3360,7 @@ function requireConstants$3 () {
 	if (hasRequiredConstants$3) return constants$3;
 	hasRequiredConstants$3 = 1;
 
-	const { MessageChannel, receiveMessageOnPort } = require$$0$6;
+	const { MessageChannel, receiveMessageOnPort } = require$$0$8;
 
 	const corsSafeListedMethods = ['GET', 'HEAD', 'POST'];
 	const corsSafeListedMethodsSet = new Set(corsSafeListedMethods);
@@ -14124,7 +14116,7 @@ function requirePendingInterceptorsFormatter () {
 	hasRequiredPendingInterceptorsFormatter = 1;
 
 	const { Transform } = require$$0$5;
-	const { Console } = require$$1$2;
+	const { Console } = require$$1$3;
 
 	/**
 	 * Gets the output of `console.table(…)` as a string.
@@ -14351,7 +14343,7 @@ function requireProxyAgent () {
 	hasRequiredProxyAgent = 1;
 
 	const { kProxy, kClose, kDestroy, kInterceptors } = requireSymbols$4();
-	const { URL } = require$$1$3;
+	const { URL } = require$$1$4;
 	const Agent = requireAgent();
 	const Pool = requirePool();
 	const DispatcherBase = requireDispatcherBase();
@@ -22301,7 +22293,7 @@ function requireEvents () {
 
 	const { webidl } = requireWebidl();
 	const { kEnumerableProperty } = requireUtil$6();
-	const { MessagePort } = require$$0$6;
+	const { MessagePort } = require$$0$8;
 
 	/**
 	 * @see https://html.spec.whatwg.org/multipage/comms.html#messageevent
@@ -22818,7 +22810,7 @@ function requireConnection () {
 	if (hasRequiredConnection) return connection;
 	hasRequiredConnection = 1;
 
-	const diagnosticsChannel = require$$0$7;
+	const diagnosticsChannel = require$$0$9;
 	const { uid, states } = requireConstants();
 	const {
 	  kReadyState,
@@ -23199,7 +23191,7 @@ function requireReceiver () {
 	hasRequiredReceiver = 1;
 
 	const { Writable } = require$$0$5;
-	const diagnosticsChannel = require$$0$7;
+	const diagnosticsChannel = require$$0$9;
 	const { parserStates, opcodes, states, emptyBuffer } = requireConstants();
 	const { kReadyState, kSentClose, kResponse, kReceivedClose } = requireSymbols();
 	const { isValidStatusCode, failWebsocketConnection, websocketMessageReceived } = requireUtil();
@@ -25522,7 +25514,7 @@ function requirePathUtils () {
 	};
 	Object.defineProperty(pathUtils, "__esModule", { value: true });
 	pathUtils.toPlatformPath = pathUtils.toWin32Path = pathUtils.toPosixPath = void 0;
-	const path = __importStar(require$$1$4);
+	const path = __importStar(require$$1$5);
 	/**
 	 * toPosixPath converts the given path to the posix form. On Windows, \\ will be
 	 * replaced with /.
@@ -25609,7 +25601,7 @@ function requireIoUtil () {
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.getCmdPath = exports.tryGetExecutablePath = exports.isRooted = exports.isDirectory = exports.exists = exports.READONLY = exports.UV_FS_O_EXLOCK = exports.IS_WINDOWS = exports.unlink = exports.symlink = exports.stat = exports.rmdir = exports.rm = exports.rename = exports.readlink = exports.readdir = exports.open = exports.mkdir = exports.lstat = exports.copyFile = exports.chmod = void 0;
 		const fs = __importStar(require$$1);
-		const path = __importStar(require$$1$4);
+		const path = __importStar(require$$1$5);
 		_a = fs.promises
 		// export const {open} = 'fs'
 		, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.open = _a.open, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rm = _a.rm, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
@@ -25799,7 +25791,7 @@ function requireIo () {
 	Object.defineProperty(io, "__esModule", { value: true });
 	io.findInPath = io.which = io.mkdirP = io.rmRF = io.mv = io.cp = void 0;
 	const assert_1 = require$$0$3;
-	const path = __importStar(require$$1$4);
+	const path = __importStar(require$$1$5);
 	const ioUtil = __importStar(requireIoUtil());
 	/**
 	 * Copies a file or folder.
@@ -26107,7 +26099,7 @@ function requireToolrunner () {
 	const os = __importStar(require$$0);
 	const events = __importStar(require$$4);
 	const child = __importStar(require$$2$2);
-	const path = __importStar(require$$1$4);
+	const path = __importStar(require$$1$5);
 	const io = __importStar(requireIo());
 	const ioUtil = __importStar(requireIoUtil());
 	const timers_1 = require$$6$1;
@@ -26951,7 +26943,7 @@ function requireCore () {
 		const file_command_1 = requireFileCommand();
 		const utils_1 = requireUtils$1();
 		const os = __importStar(require$$0);
-		const path = __importStar(require$$1$4);
+		const path = __importStar(require$$1$5);
 		const oidc_utils_1 = requireOidcUtils();
 		/**
 		 * The code to exit an action
@@ -27265,11 +27257,8 @@ var hasRequiredSrc;
 function requireSrc () {
 	if (hasRequiredSrc) return src;
 	hasRequiredSrc = 1;
-	// const fs = require('node:fs')
 	const core = requireCore();
 	const exec = requireExec()
-
-	// const Api = require('./api')
 
 	;(async () => {
 	    try {
@@ -27279,32 +27268,25 @@ function requireSrc () {
 	        // core.startGroup('Debug: github.context')
 	        // console.log(github.context)
 	        // core.endGroup() // Debug github.context
-	        core.startGroup('Debug: process.env');
-	        console.log(process.env);
-	        core.endGroup(); // Debug process.env
+	        // core.startGroup('Debug: process.env')
+	        // console.log(process.env)
+	        // core.endGroup() // Debug process.env
 
-	        // const bin = `${process.env.RUNNER_TEMP}/docker-context-action`
-
-	        console.log('GITHUB_ACTION_REPOSITORY:', process.env.GITHUB_ACTION_REPOSITORY);
-	        console.log('GITHUB_ACTION_REF:', process.env.GITHUB_ACTION_REF);
-	        console.log('GITHUB_WORKSPACE:', process.env.GITHUB_WORKSPACE);
+	        core.debug(`GITHUB_ACTION_REPOSITORY: ${process.env.GITHUB_ACTION_REPOSITORY}`);
+	        core.debug(`GITHUB_ACTION_REF: ${process.env.GITHUB_ACTION_REF}`);
+	        core.debug(`GITHUB_WORKSPACE: ${process.env.GITHUB_WORKSPACE}`);
 	        let bin = `${process.env.GITHUB_WORKSPACE}/src`;
-	        core.info(`bin: ${bin}`);
 	        if (process.env.GITHUB_ACTION_REPOSITORY && process.env.GITHUB_ACTION_REF) {
 	            const actionPath = `/home/runner/work/_actions/${process.env.GITHUB_ACTION_REPOSITORY}/${process.env.GITHUB_ACTION_REF}`;
-	            core.info(`actionPath: ${actionPath}`);
+	            console.log(`actionPath: ${actionPath}`);
 	            bin = `${actionPath}/src`;
 	        }
-	        core.info(`bin: ${bin}`);
-	        await exec.exec('ls', ['-lah', bin], { ignoreReturnCode: true });
+	        console.log(`bin: ${bin}`);
+	        // await exec.exec('ls', ['-lah', bin], { ignoreReturnCode: true })
 
 	        if (stage === 'main') {
 	            core.info('🏳️ Starting - Docker Context Action');
 	            core.saveState('STAGE', 'cleanup');
-
-	            // core.startGroup(`Download Scripts: ${bin}`)
-	            // await downloadScript(bin)
-	            // core.endGroup() // Download Scripts
 
 	            if (core.getInput('pass') || core.getInput('ssh_key')) {
 	                console.log(`▶️ Running step: ${bin}/ssh.sh`);
@@ -27340,30 +27322,6 @@ function requireSrc () {
 	        core.setFailed(e.message);
 	    }
 	})();
-
-	// /**
-	//  * Download bin Scripts
-	//  * @param {String} bin
-	//  * @return {Promise<void>}
-	//  */
-	// async function downloadScript(bin) {
-	//     const token = core.getInput('token', { required: true })
-	//     const workflowRef = process.env.GITHUB_WORKFLOW_REF
-	//     console.log('workflowRef:', workflowRef)
-	//     const ref = workflowRef.split('@')[1]
-	//     console.log('ref:', ref)
-	//     const repo = { owner: workflowRef.split('/')[0], repo: workflowRef.split('/')[1] }
-	//     console.log('repo:', repo)
-	//     const api = new Api(token, repo)
-	//     fs.mkdirSync(bin)
-	//     await api.getContent(ref, 'src/ssh.sh', `${bin}/ssh.sh`)
-	//     await api.getContent(ref, 'src/context.sh', `${bin}/context.sh`)
-	//     if (core.getInput('registry_user') && core.getInput('registry_pass')) {
-	//         await api.getContent(ref, 'src/login.sh', `${bin}/login.sh`)
-	//     }
-	//     await api.getContent(ref, 'src/cleanup.sh', `${bin}/cleanup.sh`)
-	//     await exec.getExecOutput(`ls -lah ${bin}`)
-	// }
 	return src;
 }
 
