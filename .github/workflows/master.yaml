@@ -1,26 +1,24 @@
-name: "Test"
+name: "Master"
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "18 18 * * 1,3,5"
-  push:
-    branches: ["**"]
-    paths:
-      - ".github/workflows/test.yaml"
-      - "dist/**"
-      - "src/**"
-      - "package*.json"
-      - "requirements*.txt"
-      - "action.yml"
-      - "Dockerfile"
+  #push:
+  #  branches: ["master"]
+  #  paths:
+  #    - ".github/workflows/test.yaml"
+  #    - "dist/**"
+  #    - "src/**"
+  #    - "package*.json"
+  #    - "requirements*.txt"
+  #    - "action.yml"
+  #    - "Dockerfile"
 
 env:
   stack-name: "test_stack-context"
 
 jobs:
-  test:
-    name: "Test"
+  master:
+    name: "Master"
     if: ${{ !contains(github.event.head_commit.message, '#notest') }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
@@ -50,7 +48,7 @@ jobs:
 
       - name: "1: Docker Context"
         if: ${{ !cancelled() }}
-        uses: ./
+        uses: cssnr/docker-context-action@master
         with:
           host: ${{ secrets.DOCKER_HOST }}
           #port: ${{ secrets.DOCKER_PORT }}
