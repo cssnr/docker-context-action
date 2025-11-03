@@ -38,6 +38,11 @@ jobs:
           GITHUB_CTX: ${{ toJSON(github) }}
         run: echo "$GITHUB_CTX"
 
+      - name: "Debug"
+        continue-on-error: true
+        run: |
+          echo "pull_request.head.sha: ${{ github.event.pull_request.head.sha }}"
+
       - name: "1: Before Context"
         continue-on-error: true
         run: |
@@ -45,7 +50,7 @@ jobs:
 
       - name: "1: Docker Context"
         if: ${{ !cancelled() }}
-        uses: ./
+        uses: cssnr/docker-context-action@${{ github.event.pull_request.head.sha }}
         with:
           host: ${{ secrets.DOCKER_HOST }}
           #port: ${{ secrets.DOCKER_PORT }}
