@@ -26,8 +26,10 @@ jobs:
     timeout-minutes: 3
 
     steps:
-      - name: "Checkout"
+      - name: "Checkout Pull"
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: "Debug CTX github"
         if: ${{ !github.event.act }}
@@ -58,7 +60,7 @@ jobs:
           #docker info
           docker ps -f "name=${{ env.stack-name }}"
 
-      - name: "1: Write YAML"
+      - name: "2: Write YAML"
         if: ${{ !cancelled() }}
         uses: teunmooij/yaml@v1
         with:
@@ -66,11 +68,11 @@ jobs:
           data: |
             {"version":"3.8","services":{"alpine":{"image":"alpine:latest","command":"tail -f /dev/null"}}}
 
-      - name: "1: Deploy Stack"
+      - name: "2: Deploy Stack"
         run: |
           docker stack deploy -c docker-compose.yaml --detach=false "${{ env.stack-name }}"
 
-      - name: "1: After Deploy"
+      - name: "2: After Deploy"
         run: |
           docker ps -f "name=${{ env.stack-name }}"
           #docker stack rm "${{ env.stack-name }}"
