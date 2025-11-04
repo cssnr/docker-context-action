@@ -27267,14 +27267,14 @@ function requireSrc () {
 	    try {
 	        const stage = core.getState('STAGE') || 'main';
 
+	        // Setup
 	        core.debug(`__dirname: ${__dirname}`);
 	        const bin = path.resolve(__dirname, '../src');
 	        core.debug(`bin: ${bin}`);
 
 	        const options = { ignoreReturnCode: true, silent: true };
 	        const out = await exec.getExecOutput('ls', ['-lah', bin], options);
-	        console.log(`code: ${out.exitCode}\n${out.stdout}\n${out.stderr}`);
-	        core.debug(`code: ${out.exitCode}\n${out.stdout}\n${out.stderr}`);
+	        core.debug(`ls bin out: ${out.exitCode}\n${out.stdout}\n${out.stderr}`);
 
 	        // // Debug
 	        // core.startGroup('Debug: github.context')
