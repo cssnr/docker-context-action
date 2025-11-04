@@ -27267,6 +27267,20 @@ function requireSrc () {
 	    try {
 	        const stage = core.getState('STAGE') || 'main';
 
+	        core.debug(`__dirname: ${__dirname}`);
+	        const bin = path.resolve(__dirname, '../src');
+	        core.debug(`bin: ${bin}`);
+
+	        const out = await exec.getExecOutput('ls', ['-lah', bin], {
+	            ignoreReturnCode: true,
+	            silent: true,
+	        });
+	        console.log('----------------------');
+	        core.debug(
+	            `code: ${out.exitCode} - stdout: ${out.stdout} - stderr: ${out.stderr}`
+	        );
+	        console.log('----------------------');
+
 	        // // Debug
 	        // core.startGroup('Debug: github.context')
 	        // console.log(github.context)
@@ -27274,20 +27288,6 @@ function requireSrc () {
 	        // core.startGroup('Debug: process.env')
 	        // console.log(process.env)
 	        // core.endGroup() // Debug process.env
-
-	        // core.debug(`GITHUB_ACTION_REPOSITORY: ${process.env.GITHUB_ACTION_REPOSITORY}`)
-	        // core.debug(`GITHUB_ACTION_REF: ${process.env.GITHUB_ACTION_REF}`)
-	        // core.debug(`GITHUB_WORKSPACE: ${process.env.GITHUB_WORKSPACE}`)
-	        // let bin = `${process.env.GITHUB_WORKSPACE}/src`
-	        // if (process.env.GITHUB_ACTION_REPOSITORY && process.env.GITHUB_ACTION_REF) {
-	        //     const actionPath = `/home/runner/work/_actions/${process.env.GITHUB_ACTION_REPOSITORY}/${process.env.GITHUB_ACTION_REF}`
-	        //     console.log(`actionPath: ${actionPath}`)
-	        //     bin = `${actionPath}/src`
-	        // }
-	        console.log('__dirname:', __dirname);
-	        const bin = path.resolve(__dirname, '../src');
-	        console.log(`bin: ${bin}`);
-	        await exec.exec('ls', ['-lah', bin], { ignoreReturnCode: true });
 
 	        if (stage === 'main') {
 	            core.info('🏳️ Starting - Docker Context Action');
