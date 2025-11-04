@@ -27271,10 +27271,8 @@ function requireSrc () {
 	        const bin = path.resolve(__dirname, '../src');
 	        core.debug(`bin: ${bin}`);
 
-	        const out = await exec.getExecOutput('ls', ['-lah', 'notadirectory'], {
-	            ignoreReturnCode: true,
-	            silent: true,
-	        });
+	        const options = { ignoreReturnCode: true, silent: true };
+	        const out = await exec.getExecOutput('ls', ['-lah', bin], options);
 	        console.log(`code: ${out.exitCode}\n${out.stdout}\n${out.stderr}`);
 	        core.debug(`code: ${out.exitCode}\n${out.stdout}\n${out.stderr}`);
 
