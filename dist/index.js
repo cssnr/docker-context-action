@@ -27271,15 +27271,12 @@ function requireSrc () {
 	        const bin = path.resolve(__dirname, '../src');
 	        core.debug(`bin: ${bin}`);
 
-	        const out = await exec.getExecOutput('ls', ['-lah', bin], {
+	        const out = await exec.getExecOutput('ls', ['-lah', 'notadirectory'], {
 	            ignoreReturnCode: true,
 	            silent: true,
 	        });
-	        console.log('----------------------');
-	        core.debug(
-	            `code: ${out.exitCode} - stdout: ${out.stdout} - stderr: ${out.stderr}`
-	        );
-	        console.log('----------------------');
+	        console.log(`code: ${out.exitCode}\n${out.stdout}\n${out.stderr}`);
+	        core.debug(`code: ${out.exitCode}\n${out.stdout}\n${out.stderr}`);
 
 	        // // Debug
 	        // core.startGroup('Debug: github.context')
