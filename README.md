@@ -42,7 +42,7 @@ steps:
       ssh_key: ${{ secrets.DOCKER_SSH_KEY }} # or pass - optional
 
   - name: 'Inspect Docker'
-    runs: |
+    run: |
       docker context ls
       docker context inspect
       docker info
