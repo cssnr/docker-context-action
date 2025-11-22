@@ -142,7 +142,7 @@ steps:
       pass: ${{ secrets.DOCKER_PASS }}
 
   - name: 'Stack Deploy'
-    runs: docker stack deploy -c docker-compose.yaml --detach=false stack-name
+    run: docker stack deploy -c docker-compose.yaml --detach=false stack-name
 ```
 
 For more examples, you can check out other projects using this action:  
