@@ -1,6 +1,8 @@
 name: "Check Build"
 
 on:
+  push:
+    branches: [master]
   pull_request_target:
     paths:
       - "dist/**"
@@ -45,4 +47,4 @@ jobs:
           echo "::endgroup::"
 
       - name: "Check Build Action"
-        uses: cssnr/check-build-action@v1
+        uses: cssnr/check-build-action@latest

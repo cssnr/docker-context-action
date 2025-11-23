@@ -8,5 +8,5 @@ export default {
         file: 'dist/index.js',
         format: 'cjs',
     },
-    plugins: [commonjs(), nodeResolve()],
+    plugins: [commonjs(), nodeResolve({ preferBuiltins: true })],
 }

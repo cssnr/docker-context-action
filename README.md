@@ -8,9 +8,9 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cssnr_docker-context-action&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cssnr_docker-context-action)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/cssnr/docker-context-action?logo=github&label=updated)](https://github.com/cssnr/docker-context-action/pulse)
 [![Codeberg Last Commit](https://img.shields.io/gitea/last-commit/cssnr/docker-context-action/master?gitea_url=https%3A%2F%2Fcodeberg.org%2F&logo=codeberg&logoColor=white&label=updated)](https://codeberg.org/cssnr/docker-context-action)
-[![GitHub Contributors](https://img.shields.io/github/contributors-anon/cssnr/docker-context-action?logo=github)](https://github.com/cssnr/docker-context-action/graphs/contributors)
 [![GitHub Repo Size](https://img.shields.io/github/repo-size/cssnr/docker-context-action?logo=bookstack&logoColor=white&label=repo%20size)](https://github.com/cssnr/docker-context-action?tab=readme-ov-file#readme)
 [![GitHub Top Language](https://img.shields.io/github/languages/top/cssnr/docker-context-action?logo=sharp&logoColor=white)](https://github.com/cssnr/docker-context-action)
+[![GitHub Contributors](https://img.shields.io/github/contributors-anon/cssnr/docker-context-action?logo=github)](https://github.com/cssnr/docker-context-action/graphs/contributors)
 [![GitHub Discussions](https://img.shields.io/github/discussions/cssnr/docker-context-action?logo=github)](https://github.com/cssnr/docker-context-action/discussions)
 [![GitHub Forks](https://img.shields.io/github/forks/cssnr/docker-context-action?style=flat&logo=github)](https://github.com/cssnr/docker-context-action/forks)
 [![GitHub Repo Stars](https://img.shields.io/github/stars/cssnr/docker-context-action?style=flat&logo=github)](https://github.com/cssnr/docker-context-action/stargazers)
@@ -42,7 +42,7 @@ steps:
       ssh_key: ${{ secrets.DOCKER_SSH_KEY }} # or pass - optional
 
   - name: 'Inspect Docker'
-    runs: |
+    run: |
       docker context ls
       docker context inspect
       docker info
@@ -180,19 +180,22 @@ For more information, see the CSSNR [SUPPORT.md](https://github.com/cssnr/.githu
 
 # Contributing
 
+If you would like to submit a PR, please review the [CONTRIBUTING.md](#contributing-ov-file).
+
 Please consider making a donation to support the development of this project
 and [additional](https://cssnr.com/) open source projects.
 
 [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/cssnr)
 
-If you would like to submit a PR, please review the [CONTRIBUTING.md](#contributing-ov-file).
+[![Actions Tools](https://raw.githubusercontent.com/smashedr/repo-images/refs/heads/master/actions/actions-tools.png)](https://actions-tools.cssnr.com/)
 
-Additionally, you can support other GitHub Actions I have published:
+Additionally, you can support other [GitHub Actions](https://actions.cssnr.com/) I have published:
 
 - [Stack Deploy Action](https://github.com/cssnr/stack-deploy-action?tab=readme-ov-file#readme)
 - [Portainer Stack Deploy Action](https://github.com/cssnr/portainer-stack-deploy-action?tab=readme-ov-file#readme)
 - [Docker Context Action](https://github.com/cssnr/docker-context-action?tab=readme-ov-file#readme)
 - [Actions Up Action](https://github.com/cssnr/actions-up-action?tab=readme-ov-file#readme)
+- [Zensical Action](https://github.com/cssnr/zensical-action?tab=readme-ov-file#readme)
 - [VirusTotal Action](https://github.com/cssnr/virustotal-action?tab=readme-ov-file#readme)
 - [Mirror Repository Action](https://github.com/cssnr/mirror-repository-action?tab=readme-ov-file#readme)
 - [Update Version Tags Action](https://github.com/cssnr/update-version-tags-action?tab=readme-ov-file#readme)
@@ -230,10 +233,11 @@ These actions are not published on the Marketplace, but may be useful.
 
 These are basic action templates that I use for creating new actions.
 
-- [js-test-action](https://github.com/smashedr/js-test-action?tab=readme-ov-file#readme) - JavaScript
-- [py-test-action](https://github.com/smashedr/py-test-action?tab=readme-ov-file#readme) - Python
-- [ts-test-action](https://github.com/smashedr/ts-test-action?tab=readme-ov-file#readme) - TypeScript
-- [docker-test-action](https://github.com/smashedr/docker-test-action?tab=readme-ov-file#readme) - Docker Image
+- [javascript-action](https://github.com/smashedr/javascript-action?tab=readme-ov-file#readme) - JavaScript
+- [typescript-action](https://github.com/smashedr/typescript-action?tab=readme-ov-file#readme) - TypeScript
+- [py-test-action](https://github.com/smashedr/py-test-action?tab=readme-ov-file#readme) - Dockerfile Python
+- [test-action-uv](https://github.com/smashedr/test-action-uv?tab=readme-ov-file#readme) - Dockerfile Python UV
+- [docker-test-action](https://github.com/smashedr/docker-test-action?tab=readme-ov-file#readme) - Docker Image Python
 
 Note: The `docker-test-action` builds, runs and pushes images to [GitHub Container Registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
 
@@ -241,4 +245,4 @@ Note: The `docker-test-action` builds, runs and pushes images to [GitHub Contain
 
 </details>
 
-For a full list of current projects to support visit: [https://cssnr.github.io/](https://cssnr.github.io/)
+For a full list of current projects visit: [https://cssnr.github.io/](https://cssnr.github.io/)
